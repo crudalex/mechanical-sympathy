@@ -9,7 +9,7 @@ public final class LetTheCallerChoose
         {
             final String[] words = line.split("+\\W"); // regex should be precompiled for performance
             List<String> wordsAsList = Arrays.asList(words);
-            distinctWords.add(wordsAsList);
+            distinctWords.addAll(wordsAsList);
         }
 
         return distinctWords.size();
@@ -22,7 +22,7 @@ public final class LetTheCallerChoose
         String line = null;
         while (null != (line = in.readLine()))
         {
-            line.split(distinctWords, "+\\W");
+            line.split(distinctWords, "+\\W"); // regex should be precompiled for performance
         }
 
         return distinctWords.size();
