@@ -1,3 +1,5 @@
+import java.util.concurrent.atomic.AtomicLongArray;
+
 public final class FalseSharing
     implements Runnable
 {
@@ -5,12 +7,12 @@ public final class FalseSharing
     public final static long ITERATIONS = 500L * 1000L * 1000L;
     private final int arrayIndex;
 
-    private static VolatileLong[] longs = new VolatileLong[NUM_THREADS];
+    private static AtomicLongArray[] longs = new AtomicLongArray[NUM_THREADS];
     static
     {
         for (int i = 0; i < longs.length; i++)
         {
-            longs[i] = new VolatileLong();
+            longs[i] = new AtomicLongArray(5); // reduce to less than 5 for false sharing
         }
     }
 
@@ -51,13 +53,7 @@ public final class FalseSharing
         long i = ITERATIONS + 1;
         while (0 != --i)
         {
-            longs[arrayIndex].value = i;
+            longs[arrayIndex].set(0, i);
         }
-    }
-
-    public final static class VolatileLong
-    {
-        public volatile long value = 0L;
-        public long p1, p2, p3, p4, p5, p6; // comment out for false sharing
     }
 }
