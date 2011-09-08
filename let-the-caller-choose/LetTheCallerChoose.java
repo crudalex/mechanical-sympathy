@@ -7,7 +7,8 @@ public final class LetTheCallerChoose
         String line = null;
         while (null != (line = in.readLine()))
         {
-            final String[] words = line.split("+\\W"); // regex should be precompiled for performance
+            // Note: regex should be precompiled for performance
+            final String[] words = line.split("+\\W"); 
             List<String> wordsAsList = Arrays.asList(words);
             distinctWords.addAll(wordsAsList);
         }
@@ -22,7 +23,8 @@ public final class LetTheCallerChoose
         String line = null;
         while (null != (line = in.readLine()))
         {
-            line.split(distinctWords, "+\\W"); // regex should be precompiled for performance
+            // Note: regex should be precompiled for performance
+            line.split(distinctWords, "+\\W"); 
         }
 
         return distinctWords.size();
