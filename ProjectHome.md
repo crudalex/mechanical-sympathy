@@ -1,0 +1,1 @@
+Code snippets for illustration from the http://mechanical-sympathy.blogspot.com/ blog.
